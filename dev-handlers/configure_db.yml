@@ -9,7 +9,7 @@
     dst_file: /etc/my.cnf
 
   tasks:
-  - name: "Install {{ db_packages }} package
+  - name: "Install {{ db_packages }} package"
     yum:
       name: "{{ item }}"
       state: latest
