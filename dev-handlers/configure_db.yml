@@ -5,7 +5,7 @@
       - mariadb-server
       - MySQL-python
     db_service: mariadb
-    src_file: "httpd://materials.example.com/task_control/my.cnf.template"
+    src_file: "http://materials.example.com/task_control/my.cnf.template"
     dst_file: /etc/my.cnf
 
   tasks:
