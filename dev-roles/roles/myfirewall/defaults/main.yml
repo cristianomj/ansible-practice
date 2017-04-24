@@ -1,0 +1,4 @@
+---
+# defaults fitle for myfirewall
+
+firewall_service: ssh
