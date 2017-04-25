@@ -1,0 +1,6 @@
+[webservers]
+serverb.lab.example.com
+tower.lab.example.com
+
+[lbserver]
+workstation.lab.example.com
