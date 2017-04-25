@@ -1,0 +1,154 @@
+2017-04-25 13:16:27,650 p=8112 u=student |   [WARNING]: provided hosts list is empty, only localhost is available
+
+2017-04-25 13:16:27,662 p=8112 u=student |  ERROR! Syntax Error while loading YAML.
+
+
+The error appears to have been in '/home/student/troubleshooting/samba.yml': line 8, column 30, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+    install_state: installed
+    random_var: This is colon: test
+                             ^ here
+
+2017-04-25 13:19:48,718 p=8155 u=student |   [WARNING]: provided hosts list is empty, only localhost is available
+
+2017-04-25 13:19:48,723 p=8155 u=student |  ERROR! Syntax Error while loading YAML.
+
+
+The error appears to have been in '/home/student/troubleshooting/samba.yml': line 43, column 4, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+   - name: deliver samba config
+   ^ here
+
+2017-04-25 13:21:41,722 p=8205 u=student |   [WARNING]: provided hosts list is empty, only localhost is available
+
+2017-04-25 13:21:41,728 p=8205 u=student |  ERROR! Syntax Error while loading YAML.
+
+
+The error appears to have been in '/home/student/troubleshooting/samba.yml': line 44, column 14, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  - name: deliver samba config
+     template:
+             ^ here
+
+2017-04-25 13:22:22,143 p=8211 u=student |   [WARNING]: provided hosts list is empty, only localhost is available
+
+2017-04-25 13:22:22,150 p=8211 u=student |  ERROR! Syntax Error while loading YAML.
+
+
+The error appears to have been in '/home/student/troubleshooting/samba.yml': line 14, column 15, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+      name: samba
+      state: {{ install_state }}
+              ^ here
+We could be wrong, but this one looks like it might be an issue with
+missing quotes.  Always quote template expression brackets when they
+start a value. For instance:
+
+    with_items:
+      - {{ foo }}
+
+Should be written as:
+
+    with_items:
+      - "{{ foo }}"
+
+2017-04-25 13:23:24,479 p=8227 u=student |   [WARNING]: provided hosts list is empty, only localhost is available
+
+2017-04-25 13:23:24,619 p=8227 u=student |  playbook: samba.yml
+2017-04-25 13:23:57,446 p=8240 u=student |   [WARNING]: provided hosts list is empty, only localhost is available
+
+2017-04-25 13:23:57,628 p=8240 u=student |  PLAY [Install a samba server] **************************************************
+2017-04-25 13:23:57,629 p=8240 u=student |  skipping: no hosts matched
+2017-04-25 13:23:57,630 p=8240 u=student |  PLAY RECAP *********************************************************************
+2017-04-25 13:25:42,547 p=8271 u=student |  PLAY [Install a samba server] **************************************************
+2017-04-25 13:25:42,712 p=8271 u=student |  TASK [setup] *******************************************************************
+2017-04-25 13:25:43,183 p=8271 u=student |  fatal: [servera.lab.exammple.com]: UNREACHABLE! => {"changed": false, "msg": "SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue", "unreachable": true}
+2017-04-25 13:25:43,190 p=8271 u=student |  	to retry, use: --limit @samba.retry
+
+2017-04-25 13:25:43,191 p=8271 u=student |  PLAY RECAP *********************************************************************
+2017-04-25 13:25:43,191 p=8271 u=student |  servera.lab.exammple.com   : ok=0    changed=0    unreachable=1    failed=0   
+2017-04-25 13:26:35,244 p=8294 u=student |  Using /home/student/troubleshooting/ansible.cfg as config file
+2017-04-25 13:26:35,424 p=8294 u=student |  1 plays in samba.yml
+2017-04-25 13:26:35,458 p=8294 u=student |  PLAY [Install a samba server] **************************************************
+2017-04-25 13:26:35,596 p=8294 u=student |  TASK [setup] *******************************************************************
+2017-04-25 13:26:35,858 p=8294 u=student |  fatal: [servera.lab.exammple.com]: UNREACHABLE! => {"changed": false, "msg": "SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue", "unreachable": true}
+2017-04-25 13:26:35,865 p=8294 u=student |  	to retry, use: --limit @samba.retry
+
+2017-04-25 13:26:35,866 p=8294 u=student |  PLAY RECAP *********************************************************************
+2017-04-25 13:26:35,867 p=8294 u=student |  servera.lab.exammple.com   : ok=0    changed=0    unreachable=1    failed=0   
+2017-04-25 13:27:25,529 p=8308 u=student |  Using /home/student/troubleshooting/ansible.cfg as config file
+2017-04-25 13:27:25,665 p=8308 u=student |  Loaded callback default of type stdout, v2.0
+2017-04-25 13:27:25,702 p=8308 u=student |  1 plays in samba.yml
+2017-04-25 13:27:25,737 p=8308 u=student |  PLAY [Install a samba server] **************************************************
+2017-04-25 13:27:25,883 p=8308 u=student |  TASK [setup] *******************************************************************
+2017-04-25 13:27:26,169 p=8308 u=student |  fatal: [servera.lab.exammple.com]: UNREACHABLE! => {"changed": false, "msg": "SSH encountered an unknown error. The output was:\nOpenSSH_6.6.1, OpenSSL 1.0.1e-fips 11 Feb 2013\r\ndebug1: Reading configuration data /home/student/.ssh/config\r\ndebug1: /home/student/.ssh/config line 1: Applying options for *\r\ndebug1: Reading configuration data /etc/ssh/ssh_config\r\ndebug1: /etc/ssh/ssh_config line 60: Applying options for *\r\ndebug1: auto-mux: Trying existing master\r\ndebug1: Control socket \"/home/student/.ansible/cp/ansible-ssh-servera.lab.exammple.com-22-devops\" does not exist\r\ndebug1: Executing proxy command: exec /usr/bin/sss_ssh_knownhostsproxy -p 22 servera.lab.exammple.com\r\ndebug3: timeout: 10000 ms remain after connect\r\ndebug1: permanently_drop_suid: 1000\r\ndebug3: Incorrect RSA1 identifier\r\ndebug3: Could not load \"/home/student/.ssh/lab_rsa\" as a RSA1 public key\r\ndebug1: identity file /home/student/.ssh/lab_rsa type 1\r\ndebug1: identity file /home/student/.ssh/lab_rsa-cert type -1\r\ndebug1: Enabling compatibility mode for protocol 2.0\r\ndebug1: Local version string SSH-2.0-OpenSSH_6.6.1\r\nssh_exchange_identification: Connection closed by remote host\r\n", "unreachable": true}
+2017-04-25 13:27:26,176 p=8308 u=student |  	to retry, use: --limit @samba.retry
+
+2017-04-25 13:27:26,176 p=8308 u=student |  PLAY RECAP *********************************************************************
+2017-04-25 13:27:26,177 p=8308 u=student |  servera.lab.exammple.com   : ok=0    changed=0    unreachable=1    failed=0   
+2017-04-25 13:30:48,858 p=8372 u=student |  PLAY [Install a samba server] **************************************************
+2017-04-25 13:30:49,055 p=8372 u=student |  TASK [setup] *******************************************************************
+2017-04-25 13:30:51,383 p=8372 u=student |  ok: [servera.lab.example.com]
+2017-04-25 13:30:51,394 p=8372 u=student |  TASK [install samba] ***********************************************************
+2017-04-25 13:31:03,131 p=8372 u=student |  changed: [servera.lab.example.com]
+2017-04-25 13:31:03,140 p=8372 u=student |  TASK [install firewalld] *******************************************************
+2017-04-25 13:31:04,673 p=8372 u=student |  ok: [servera.lab.example.com]
+2017-04-25 13:31:04,684 p=8372 u=student |  TASK [debug install_state variable] ********************************************
+2017-04-25 13:31:04,954 p=8372 u=student |  ok: [servera.lab.example.com] => {
+    "msg": "The state for the samba service is installed"
+}
+2017-04-25 13:31:04,963 p=8372 u=student |  TASK [start samba] *************************************************************
+2017-04-25 13:31:06,903 p=8372 u=student |  changed: [servera.lab.example.com]
+2017-04-25 13:31:06,911 p=8372 u=student |  TASK [start firewalld] *********************************************************
+2017-04-25 13:31:08,087 p=8372 u=student |  ok: [servera.lab.example.com]
+2017-04-25 13:31:08,098 p=8372 u=student |  TASK [configure firewall for samba] ********************************************
+2017-04-25 13:31:09,816 p=8372 u=student |  changed: [servera.lab.example.com]
+2017-04-25 13:31:09,828 p=8372 u=student |  TASK [deliver samba config] ****************************************************
+2017-04-25 13:31:10,189 p=8372 u=student |  fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "failed": true, "msg": "IOError: [Errno 2] No such file or directory: u'/home/student/troubleshooting/samba.j2'"}
+2017-04-25 13:31:10,193 p=8372 u=student |  NO MORE HOSTS LEFT *************************************************************
+2017-04-25 13:31:10,198 p=8372 u=student |  	to retry, use: --limit @samba.retry
+
+2017-04-25 13:31:10,199 p=8372 u=student |  PLAY RECAP *********************************************************************
+2017-04-25 13:31:10,199 p=8372 u=student |  servera.lab.example.com    : ok=7    changed=3    unreachable=0    failed=1   
+2017-04-25 13:32:26,468 p=8446 u=student |  PLAY [Install a samba server] **************************************************
+2017-04-25 13:32:30,617 p=8446 u=student |  Perform task: TASK: setup (y/n/c): *********************************************
+2017-04-25 13:32:30,619 p=8446 u=student |  TASK [setup] *******************************************************************
+2017-04-25 13:32:32,770 p=8446 u=student |  ok: [servera.lab.example.com]
+2017-04-25 13:32:35,292 p=8446 u=student |  Perform task: TASK: install samba (y/n/c): *************************************
+2017-04-25 13:32:35,300 p=8446 u=student |  TASK [install samba] ***********************************************************
+2017-04-25 13:32:37,110 p=8446 u=student |  ok: [servera.lab.example.com]
+2017-04-25 13:32:38,962 p=8446 u=student |  Perform task: TASK: install firewalld (y/n/c): *********************************
+2017-04-25 13:32:38,968 p=8446 u=student |  TASK [install firewalld] *******************************************************
+2017-04-25 13:32:40,378 p=8446 u=student |  ok: [servera.lab.example.com]
+2017-04-25 13:32:42,268 p=8446 u=student |  Perform task: TASK: debug install_state variable (y/n/c): **********************
+2017-04-25 13:32:42,273 p=8446 u=student |  TASK [debug install_state variable] ********************************************
+2017-04-25 13:32:42,531 p=8446 u=student |  ok: [servera.lab.example.com] => {
+    "msg": "The state for the samba service is installed"
+}
+2017-04-25 13:32:44,570 p=8446 u=student |  Perform task: TASK: start samba (y/n/c): ***************************************
+2017-04-25 13:32:44,575 p=8446 u=student |  TASK [start samba] *************************************************************
+2017-04-25 13:32:45,795 p=8446 u=student |  ok: [servera.lab.example.com]
+2017-04-25 13:32:47,690 p=8446 u=student |  Perform task: TASK: start firewalld (y/n/c): ***********************************
+2017-04-25 13:32:47,695 p=8446 u=student |  TASK [start firewalld] *********************************************************
+2017-04-25 13:32:48,904 p=8446 u=student |  ok: [servera.lab.example.com]
+2017-04-25 13:32:51,787 p=8446 u=student |  Perform task: TASK: configure firewall for samba (y/n/c): **********************
+2017-04-25 13:32:51,793 p=8446 u=student |  TASK [configure firewall for samba] ********************************************
+2017-04-25 13:32:53,204 p=8446 u=student |  ok: [servera.lab.example.com]
+2017-04-25 13:32:55,083 p=8446 u=student |  Perform task: TASK: deliver samba config (y/n/c): ******************************
+2017-04-25 13:32:55,088 p=8446 u=student |  TASK [deliver samba config] ****************************************************
+2017-04-25 13:32:57,182 p=8446 u=student |  changed: [servera.lab.example.com]
+2017-04-25 13:32:57,192 p=8446 u=student |  PLAY RECAP *********************************************************************
+2017-04-25 13:32:57,194 p=8446 u=student |  servera.lab.example.com    : ok=8    changed=1    unreachable=0    failed=0   
